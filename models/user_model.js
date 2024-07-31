@@ -6,10 +6,12 @@ const userSchema = new Schema({
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    confirmPassword: {type: String, required: true},
-    role: { type: String, default: 'user', enum: ['user', 'professional'], required: true },
+    // confirmPassword: {type: String, required: true},
+    role: { type: String, default: 'user', enum: ['user', 'professional', 'admin'], required: true },
     phoneNumber: { type: String },
-    location: { type: String }
+    location: { type: String },
+    termsAndConditions: {type: Boolean},
+
 }, {
     timestamps: true
 })
