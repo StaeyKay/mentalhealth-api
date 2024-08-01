@@ -1,0 +1,110 @@
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { UserModel } from "../models/user_model.js";
+import { loginValidator, userValidator } from "../validators/user_validator.js";
+
+export const signup = async (req, res) => {
+    // Validate the user
+    const {error, value} = userValidator.validate(req.body)
+    if (error) {
+        return res.status(400).send(error.details[0].message)
+    }
+
+    // Check if user exists
+    const email = value.email
+    const findIfUserExists = await UserModel.findOne({email})
+    if(findIfUserExists) {
+        return res.status(401).send('User has already signed up')
+    } else {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(value.password, 10)
+        value.password = hashedPassword
+    }
+
+    // Create the user
+    const addUser = await UserModel.create(value)
+
+    // Return response
+    return res.status(201).json({
+        message: 'User registered successfully'
+    })
+}
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        // Validate user
+        const {error, value} = loginValidator.validate(req.body)
+    
+        // Check if user exists
+        const user = await UserModel.findOne({email})
+        if(!user) {
+            return res.status(401).json({
+                message: 'No user found'
+            })
+        }
+    
+        // Verify their password
+        const correctPassword = bcrypt.compareSync(password, user.password)
+        if(!correctPassword) {
+            return res.status(401).json({
+                message: 'Invalid credentials'
+            })
+        }
+    
+        // Generate a session
+        req.session.user = {id: user.id}
+    
+        // Return response
+        return res.status(200).json({
+            message: 'Login successful'
+        })
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
+        })
+    }
+}
+
+export const token = async (req, res) => {
+    try {
+
+        const { email, password } = req.body
+        // Validate user
+        const {error, value} = loginValidator.validate(req.body)
+    
+        // Check if user exists
+        const user = await UserModel.findOne({email})
+        if(!user) {
+            return res.status(401).json({
+                message: 'No user found'
+            })
+        }
+    
+        // Verify their password
+        const correctPassword = bcrypt.compareSync(password, user.password)
+        if(!correctPassword) {
+            return res.status(401).json({
+                message: 'Invalid credentials'
+            })
+        }
+    
+        // Generate a token
+        const token = jwt.sign(
+            {id: user.id},
+            process.env.JWT_PRIVATE_KEY,
+            {expiresIn: '72h'}
+        )
+    
+        // Return response
+        return res.status(200).json({
+            message: 'Login successful',
+            accessToken: token
+        })
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
+        })
+    }
+}
+
