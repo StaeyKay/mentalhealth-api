@@ -15,3 +15,10 @@ export const loginValidator = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
 })
+
+export const resourceValidator = Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string(),
+    type: Joi.string().required(),
+    url: Joi.string()
+})
