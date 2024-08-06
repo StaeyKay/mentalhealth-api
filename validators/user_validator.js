@@ -22,3 +22,12 @@ export const resourceValidator = Joi.object({
     type: Joi.string().required(),
     url: Joi.string()
 })
+
+export const supportGroupValidator = Joi.object({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    schedule: Joi.string().required(),
+    facilitator: Joi.string().required(),
+    members: Joi.string().required(),
+    capacity: Joi.number()
+})
