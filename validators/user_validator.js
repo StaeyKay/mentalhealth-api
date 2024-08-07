@@ -28,6 +28,6 @@ export const supportGroupValidator = Joi.object({
     description: Joi.string().required(),
     schedule: Joi.string().required(),
     facilitator: Joi.string().required(),
-    members: Joi.string().required(),
+    members: Joi.string(),
     capacity: Joi.number()
 })

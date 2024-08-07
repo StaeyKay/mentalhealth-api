@@ -1,5 +1,5 @@
-import { SupportGroupModel } from "../models/supportGroup_model";
-import { supportGroupValidator } from "../validators/user_validator";
+import { SupportGroupModel } from "../models/supportGroup_model.js";
+import { supportGroupValidator } from "../validators/user_validator.js";
 
 
 export const addGroup = async (req, res) => {
@@ -7,7 +7,9 @@ export const addGroup = async (req, res) => {
         // Validate request
         const {value, error} = supportGroupValidator.validate(req.body);
         if(error) {
-            return res.status(400).json(error.message);
+            return res.status(400).json({
+                error: error.message
+            });
         }
     
         // Create resource
@@ -16,12 +18,11 @@ export const addGroup = async (req, res) => {
             createdBy: req.user.id
         });
     
-        await resource.save();
-        res.status(201).json(supportGroup)
+        await supportGroup.save();
+        res.status(201).json({supportGroup: supportGroup})
     } catch (error) {
-        res.status(400).json({
-            error: error.message
-        })
+        console.log(error)
+        res.status(400).json({error: error.message})
     }
 }
 

@@ -10,7 +10,7 @@ const userSchema = new Schema({
     role: { type: String, default: 'user', enum: ['user', 'professional', 'admin'], required: true },
     phoneNumber: { type: String },
     location: { type: String },
-    termsAndConditions: {type: Boolean},
+    termsAndConditions: {type: Boolean}
 
 }, {
     timestamps: true
