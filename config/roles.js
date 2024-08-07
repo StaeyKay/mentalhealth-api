@@ -11,7 +11,13 @@ export const roles = [
             'create_resource',
             'read_resource',
             'update_resource',
-            'delete_resource'
+            'delete_resource',
+            'create_supportGroup',
+            'read_supportGroup',
+            'update_supportGroup',
+            'delete_supportGroup',
+            'join_supportGroup',
+            'leave_supportGroup'
         ]
     },
     {
@@ -20,7 +26,13 @@ export const roles = [
             'create_resource',
             'read_resource',
             'update_resource',
-            'delete_resource'
+            'delete_resource',
+            'create_supportGroup',
+            'read_supportGroup',
+            'update_supportGroup',
+            'delete_supportGroup',
+            'join_supportGroup',
+            'leave_supportGroup'
         ]
     },
     {
@@ -28,7 +40,10 @@ export const roles = [
         permissions: [
             'update_profile',
             'delete_profile',
-            'read_resource'
+            'read_resource',
+            'read_supportGroup',
+            'join_supportGroup',
+            'leave_supportGroup'
         ]
     }
 
