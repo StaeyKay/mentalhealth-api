@@ -4,13 +4,14 @@ import { toJSON } from '@reis/mongoose-to-json';
 const supportGroupSchema = new Schema ({
     name: { type: String, required: true },
     description: { type: String, required: true },
-    meetingSchedule: { type: String, required: true },
-    facilitatorId: { type: Types.ObjectId, ref: 'User', required: true },
-    members: [{ type: Types.ObjectId, ref: 'User' }]
+    schedule: [{ type: String, required: true }],
+    facilitator: { type: Types.ObjectId, ref: 'User', required: true },
+    members: [{ type: Types.ObjectId, ref: 'User' }],
+    capacity: {type: Number, default: 20}
 }, {
     timestamps: true
 });
 
 supportGroupSchema.plugin(toJSON);
 
-export const supportGroupModel = model('SupportGroup', supportGroupSchema);
+export const SupportGroupModel = model('SupportGroup', supportGroupSchema);

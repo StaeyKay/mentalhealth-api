@@ -6,13 +6,14 @@ import mongoose from 'mongoose';
 import { dbConnection } from './config/db.js';
 import { userRouter } from './routes/user_router.js';
 import { resourceRouter } from './routes/resource_router.js';
+import { supportGroupRouter } from './routes/supportGroup_router.js';
 
 // Create the express app
 const app = express();
 
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,
-    tags: ['auth', 'resources'],
+    tags: ['auth', 'resources', 'supportGroup'],
     mongooseModels: mongoose.modelNames()
 })
 
@@ -23,6 +24,7 @@ app.use(cors({credentials: true, origin: '*'}));
 // Use routes
 app.use('/api/v1', userRouter)
 app.use('/api/v1', resourceRouter)
+app.use('/api/v1', supportGroupRouter)
 
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));
