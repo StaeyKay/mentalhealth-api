@@ -2,7 +2,7 @@ import { model, Schema, Types } from "mongoose";
 import { toJSON } from "@reis/mongoose-to-json";
 
 const appointmentSchema = new Schema ({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    user: { type: Types.ObjectId, ref: 'User', required: true },
     professional: { type: Types.ObjectId, ref: 'User', required: true },
     date: {type: Date, required: true},
     startTime: {type: Date, required: true},
