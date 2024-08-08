@@ -31,3 +31,13 @@ export const supportGroupValidator = Joi.object({
     members: Joi.string(),
     capacity: Joi.number()
 })
+
+export const appointmentValidator = Joi.object({
+    user: Joi.string().required(),
+    professional: Joi.string().required(),
+    date: Joi.date().required(),
+    startTime: Joi.date().required(),
+    endTime: Joi.date().required(),
+    status: Joi.string().valid('scheduled', 'completed', 'canceled').default('scheduled'),
+    notes: Joi.string().optional(),
+});

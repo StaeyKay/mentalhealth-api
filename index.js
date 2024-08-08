@@ -7,6 +7,7 @@ import { dbConnection } from './config/db.js';
 import { userRouter } from './routes/user_router.js';
 import { resourceRouter } from './routes/resource_router.js';
 import { supportGroupRouter } from './routes/supportGroup_router.js';
+import { appointmentRouter } from './routes/appointment_router.js';
 
 // Create the express app
 const app = express();
@@ -25,6 +26,7 @@ app.use(cors({credentials: true, origin: '*'}));
 app.use('/api/v1', userRouter)
 app.use('/api/v1', resourceRouter)
 app.use('/api/v1', supportGroupRouter)
+app.use('/api/v1', appointmentRouter)
 
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));
