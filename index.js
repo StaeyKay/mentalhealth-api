@@ -14,7 +14,7 @@ const app = express();
 
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,
-    tags: ['auth', 'resources', 'supportGroup'],
+    tags: ['auth', 'resources', 'supportGroup', 'appointment'],
     mongooseModels: mongoose.modelNames()
 })
 
