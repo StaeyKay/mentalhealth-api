@@ -41,3 +41,18 @@ export const appointmentValidator = Joi.object({
     status: Joi.string().valid('scheduled', 'completed', 'canceled').default('scheduled'),
     notes: Joi.string().optional(),
 });
+
+export const userProfileValidator = Joi.object({
+    firstname: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().email(),
+    bio: Joi.string().required(),
+    profession: Joi.string().required(),
+    profilePicture: Joi.string().required()
+})
+
+export const passwordUpdateValidator = Joi.object({
+    email: Joi.string(),
+    currentPassword: Joi.string(),
+    newPassword: Joi.string()
+})

@@ -8,13 +8,14 @@ import { userRouter } from './routes/user_router.js';
 import { resourceRouter } from './routes/resource_router.js';
 import { supportGroupRouter } from './routes/supportGroup_router.js';
 import { appointmentRouter } from './routes/appointment_router.js';
+import { userProfileRouter } from './routes/userProfile_routes.js';
 
 // Create the express app
 const app = express();
 
 expressOasGenerator.handleResponses(app, {
     alwaysServeDocs: true,
-    tags: ['auth', 'resources', 'supportGroup', 'appointment'],
+    tags: ['auth', 'resources', 'supportGroup', 'appointment', 'userProfile'],
     mongooseModels: mongoose.modelNames()
 })
 
@@ -27,6 +28,7 @@ app.use('/api/v1', userRouter)
 app.use('/api/v1', resourceRouter)
 app.use('/api/v1', supportGroupRouter)
 app.use('/api/v1', appointmentRouter)
+app.use('/api/v1', userProfileRouter)
 
 expressOasGenerator.handleRequests();
 app.use((req, res) => res.redirect('/api-docs/'));
