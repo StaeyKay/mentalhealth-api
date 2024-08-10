@@ -27,7 +27,6 @@ export const supportGroupValidator = Joi.object({
     name: Joi.string().required(),
     description: Joi.string().required(),
     schedule: Joi.string().required(),
-    facilitator: Joi.string().required(),
     members: Joi.string(),
     capacity: Joi.number()
 })
@@ -43,8 +42,8 @@ export const appointmentValidator = Joi.object({
 });
 
 export const userProfileValidator = Joi.object({
-    firstname: Joi.string().required(),
-    lastName: Joi.string().required(),
+    firstName: Joi.string(),
+    lastName: Joi.string(),
     email: Joi.string().email(),
     bio: Joi.string().required(),
     profession: Joi.string().required(),
@@ -52,7 +51,7 @@ export const userProfileValidator = Joi.object({
 })
 
 export const passwordUpdateValidator = Joi.object({
-    email: Joi.string(),
-    currentPassword: Joi.string(),
-    newPassword: Joi.string()
+    email: Joi.string().email().required(),
+    currentPassword: Joi.string().required(),
+    newPassword: Joi.string().min(6).required()
 })

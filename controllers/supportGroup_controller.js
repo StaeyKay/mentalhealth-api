@@ -1,4 +1,5 @@
 import { SupportGroupModel } from "../models/supportGroup_model.js";
+import { UserModel } from "../models/user_model.js";
 import { supportGroupValidator } from "../validators/user_validator.js";
 
 
@@ -11,11 +12,18 @@ export const addGroup = async (req, res) => {
                 error: error.message
             });
         }
+
+        // Fetch the logged-in user's details to get the facilitator's name
+        const user = await UserModel.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ error: "Facilitator not found" });
+        }
     
         // Create resource
         const supportGroup = await SupportGroupModel.create({
             ...value,
-            createdBy: req.user.id
+            facilitator: user.id,
+            facilitatorName: `${user.firstName} ${user.lastName}`
         });
     
         await supportGroup.save();

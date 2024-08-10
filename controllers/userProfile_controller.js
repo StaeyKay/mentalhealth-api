@@ -112,7 +112,9 @@ export const updateUserProfile = async (req, res) => {
 }
 
 export const updatePassword = async (req, res) => {
+
     try {
+
         const {value, error} = passwordUpdateValidator.validate(req.body);
         if(error) {
             return res.status(400).json({

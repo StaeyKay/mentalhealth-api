@@ -19,4 +19,4 @@ userProfileRouter.patch(
     updateUserProfile
 );
 
-userProfileRouter.patch('/users/userProfile/password', checkAuth, updatePassword);
+userProfileRouter.patch('/users/passwordUpdate', checkAuth, updatePassword);
