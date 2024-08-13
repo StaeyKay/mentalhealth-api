@@ -32,8 +32,6 @@ export const supportGroupValidator = Joi.object({
 })
 
 export const appointmentValidator = Joi.object({
-    user: Joi.string().required(),
-    professional: Joi.string().required(),
     date: Joi.date().required(),
     startTime: Joi.date().required(),
     endTime: Joi.date().required(),

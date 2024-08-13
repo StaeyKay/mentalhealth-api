@@ -6,7 +6,7 @@ const supportGroupSchema = new Schema ({
     description: { type: String, required: true },
     schedule: [{ type: String, required: true }],
     facilitator: { type: Types.ObjectId, ref: 'User', required: true },
-    facilitatorName: { type: String, required: true },
+    facilitatorName: { type: String },
     members: [{ type: Types.ObjectId, ref: 'User' }],
     capacity: {type: Number, default: 20}
 }, {

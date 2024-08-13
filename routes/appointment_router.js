@@ -4,7 +4,7 @@ import { bookAppointment, cancelAppointment, getAppointmentHistory, getProfessio
 
 export const appointmentRouter = Router();
 
-appointmentRouter.post('/appointment', checkAuth, bookAppointment);
+appointmentRouter.post('/appointment/:professionalId', checkAuth, bookAppointment);
 appointmentRouter.get('/appointment/user', checkAuth, getUserAppointments);
 appointmentRouter.get('/appointment/professional', checkAuth, getProfessionalAppointments);
 appointmentRouter.patch('/appointment/:id', checkAuth, updateAppointment)
