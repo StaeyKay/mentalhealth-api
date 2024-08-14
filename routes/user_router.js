@@ -8,5 +8,5 @@ export const userRouter = Router();
 userRouter.post('/users/auth/register', signup);
 userRouter.post('/users/auth/token', token);
 userRouter.post('/users/auth/session', login);
-userRouter.get('/users', checkAuth, hasPermission('read_users'), getAllUsers);
-userRouter.get('/users/professionals', checkAuth, getProfessionals);
+userRouter.get('/users/auth', checkAuth, hasPermission('read_users'), getAllUsers);
+userRouter.get('/users/auth/professionals', checkAuth, getProfessionals);
