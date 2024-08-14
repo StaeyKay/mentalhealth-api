@@ -108,3 +108,33 @@ export const token = async (req, res) => {
     }
 }
 
+// Endpoint to get all users
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await UserModel.find({});
+        res.status(200).json(users);
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+export const getProfessionals = async (req, res) => {
+    try {
+        // Query the database for users with the role 'professional'
+        const professionals = await UserModel.find({ role: 'professional' });
+
+        // If no professionals are found, return a 404 status with a message
+        if (!professionals.length) {
+            return res.status(404).json({ message: 'No professionals found' });
+        }
+
+        // If professionals are found, return them with a 200 status
+        res.status(200).json(professionals);
+    } catch (error) {
+        // Log the error and return a 500 status with an error message
+        console.error('Error fetching professionals:', error.message);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
