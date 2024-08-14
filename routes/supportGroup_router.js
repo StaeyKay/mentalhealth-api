@@ -6,8 +6,8 @@ export const supportGroupRouter = Router();
 
 supportGroupRouter.post('/users/supportGroup', checkAuth, hasPermission('create_supportGroup'), addGroup);
 supportGroupRouter.get('/users/supportGroup', getGroups);
+supportGroupRouter.get('/users/supportGroup/email/:email', checkAuth, supportGroupByEmail);
 supportGroupRouter.get('/users/supportGroup/:id', getGroupById);
-supportGroupRouter.get('/users/supportGroup/:email', checkAuth, supportGroupByEmail);
 supportGroupRouter.patch('/users/supportGroup/:id', checkAuth, hasPermission('update_supportGroup'), updateGroup);
 supportGroupRouter.delete('/users/supportGroup/:id', checkAuth, hasPermission('delete_supportGroup'), deleteGroup);
 supportGroupRouter.post('/users/supportGroup/join/:id', checkAuth, hasPermission('join_supportGroup'), joinGroup);

@@ -4,9 +4,9 @@ import { bookAppointment, cancelAppointment, getAppointmentHistory, getProfessio
 
 export const appointmentRouter = Router();
 
-appointmentRouter.post('/appointment/:professionalId', checkAuth, bookAppointment);
-appointmentRouter.get('/appointment/user', checkAuth, getUserAppointments);
-appointmentRouter.get('/appointment/professional', checkAuth, getProfessionalAppointments);
-appointmentRouter.patch('/appointment/:id', checkAuth, updateAppointment)
-appointmentRouter.delete('/appointment/:id', checkAuth, cancelAppointment);
-appointmentRouter.get('/appointment/history', checkAuth, getAppointmentHistory);
+appointmentRouter.post('/users/appointment/:professionalId', checkAuth, bookAppointment);
+appointmentRouter.get('/users/appointment/user', checkAuth, getUserAppointments);
+appointmentRouter.get('/users/appointment/professional', checkAuth, getProfessionalAppointments);
+appointmentRouter.patch('/users/appointment/:id', checkAuth, updateAppointment)
+appointmentRouter.delete('/users/appointment/:id', checkAuth, cancelAppointment);
+appointmentRouter.get('/users/appointment/history', checkAuth, getAppointmentHistory);

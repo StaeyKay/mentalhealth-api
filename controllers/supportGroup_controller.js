@@ -144,10 +144,10 @@ export const leaveGroup = async (req, res) => {
 // Get support groups by user email
 export const supportGroupByEmail = async (req, res) => {
     try {
-        const email = req.params.email.toLowerCase();
+        const {email} = req.params;
 
-        // Find user by email
-        const user = await UserModel.findOne({ email });
+        // Find the user by email
+        const user = await UserModel.findOne({ email: email.toLowerCase() });
 
         if (!user) {
             return res.status(404).json({ message: "User not found with the specified email" });
@@ -167,6 +167,7 @@ export const supportGroupByEmail = async (req, res) => {
 
         res.status(200).json({ supportGroups: userGroups });
     } catch (error) {
+        console.error('Error fetching support groups:', error.message);
         res.status(500).json({ error: error.message })
     }
 };

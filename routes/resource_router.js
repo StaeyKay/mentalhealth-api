@@ -4,8 +4,8 @@ import { addResource, deleteResource, getResourceById, getResources, updateResou
 
 export const resourceRouter = Router();
 
-resourceRouter.post('/resources', checkAuth, hasPermission('create_resource'), addResource);
-resourceRouter.get('/resources', checkAuth, hasPermission('read_resource'), getResources);
-resourceRouter.get('/resources/:id', checkAuth, hasPermission('read_resource'), getResourceById);
-resourceRouter.patch('/resources/:id', checkAuth, hasPermission('update_resource'), updateResource);
-resourceRouter.delete('/resources/:id', checkAuth, hasPermission('delete_resource'), deleteResource);
+resourceRouter.post('/users/resources', checkAuth, hasPermission('create_resource'), addResource);
+resourceRouter.get('/users/resources', checkAuth, hasPermission('read_resource'), getResources);
+resourceRouter.get('/users/resources/:id', checkAuth, hasPermission('read_resource'), getResourceById);
+resourceRouter.patch('/users/resources/:id', checkAuth, hasPermission('update_resource'), updateResource);
+resourceRouter.delete('/users/resources/:id', checkAuth, hasPermission('delete_resource'), deleteResource);
