@@ -99,7 +99,11 @@ export const token = async (req, res) => {
         // Return response
         return res.status(200).json({
             message: 'Login successful',
-            accessToken: token
+            accessToken: token,
+            user: {
+                id: user.id,
+                role: user.role // Include user role in response
+            }
         })
     } catch (error) {
         res.status(400).json({
